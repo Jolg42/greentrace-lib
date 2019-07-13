@@ -1,5 +1,7 @@
 import GreenTrace from "./index"
-import { toUnicode } from "punycode";
+import debugLib from "debug"
+const debug = debugLib("tgwf:test:greenTrace")
+
 
 // not sure how to mock this, so using an array here as it's the slowest part of the test
 const mockTraceRouteHops = [
@@ -36,15 +38,29 @@ describe("GreenTrace", () => {
     test("generates GeoJSON object from hops", async () => {
 
       // is it geoJSON?
+      // https://www.wikiwand.com/en/GeoJSON#/Example
 
       // do we have a type?
       expect(hopGeoJSON.type).toEqual("Feature")
       // do we have geometry?
+      expect(hopGeoJSON.geometry.type).toEqual("LineString")
+      expect(hopGeoJSON.geometry.coordinates).toHaveLength(hops.length)
       // do we have properties?
+      expect(hopGeoJSON.properties).toHaveLength(hops.length)
     })
-    test.todo("has usable IP addresses")
+    test("has usable IP addresses", () => {
+      const mockIPs = mockTraceRouteHops.map((obj) => { return Object.keys(obj)[0] })
+      const geoJSONIPs = hopGeoJSON.properties.map(obj => { return Object.keys(obj)[0] })
+
+      expect(geoJSONIPs).toEqual(mockIPs)
+
+    })
     test.todo("has usable coords addresses")
-    test.todo("has green / grey classification for each hop")
+
+
+  })
+  describe("runGreenChecks", () => {
+    test.todo("returns green / grey classification for each hop")
   })
 })
 

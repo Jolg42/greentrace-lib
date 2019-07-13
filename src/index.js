@@ -52,14 +52,15 @@ const GreenTrace = {
   },
   toGeoJSON(tracedIps) {
     // convert a list of IP like objects, with coordinates to geoJSON
-    const ipArray = Object.keys(tracedIps)
-
+    const ipArray = Object.values(tracedIps)
+    debug("toGeoJSON ", ipArray[0])
     return {
       type: "Feature",
       geometry: {
         type: "LineString",
         coordinates: ipArray.map(ip => {
-          return ip.ll
+          const ipVal = Object.values(ip)[0]
+          return ipVal.ll
         })
       },
       properties: tracedIps
