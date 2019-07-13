@@ -1,6 +1,6 @@
 {
   "name": "@tgwf/greentrace-cli",
-  "version": "0.0.1",
+  "version": "0.0.2-0",
   "description": "A bit like traceroute, but for green internet. Libraries used in Greentrace",
   "main": "lib/index.js",
   "directories": {
