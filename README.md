@@ -19,3 +19,7 @@ const hops = await GreenTrace.trace(domainName)
 // make this into something we can put on a map
 const hopsAsgeoJSON = hops.toGeoJSON()
 ```
+
+# Licenses
+
+There are two licenses, for the code and data. See the [LICENSE](https://github.com/thegreenwebfoundation/greentrace-lib/blob/master/LICENSE) file for details.
