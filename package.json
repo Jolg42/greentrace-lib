@@ -1,10 +1,31 @@
 {
-  "name": "greentrace-lib",
+  "name": "@tgwf/greentrace-cli",
   "version": "0.0.1",
   "description": "A bit like traceroute, but for green internet. Libraries used in Greentrace",
   "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "axios": "^0.19.0",
+    "geoip-lite": "^1.3.7",
+    "traceroute": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "jest": "^24.8.0",
+    "np": "^5.0.3"
+  },
   "scripts": {
     "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegreenwebfoundation/greentrace-lib.git"
   },
   "keywords": [
     "tgwf",
@@ -17,17 +38,8 @@
   ],
   "author": "Chris Adams",
   "license": "Apache-2.0",
-  "dependencies": {
-    "axios": "^0.19.0",
-    "debug": "^4.1.1",
-    "geoip-lite": "^1.3.7",
-    "traceroute": "^1.0.0"
+  "bugs": {
+    "url": "https://github.com/thegreenwebfoundation/greentrace-lib/issues"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.4",
-    "@babel/preset-env": "^7.5.4",
-    "jest": "^24.8.0",
-    "np": "^5.0.3"
-  }
+  "homepage": "https://github.com/thegreenwebfoundation/greentrace-lib#readme"
 }
