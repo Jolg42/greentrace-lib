@@ -55,8 +55,11 @@ describe("GreenTrace", () => {
       expect(geoJSONIPs).toEqual(mockIPs)
 
     })
-    test.todo("has usable coords addresses")
-
+    test("has usable coords addresses", () => {
+      const coords = hopGeoJSON.geometry.coordinates[0]
+      // TODO what are the max and min values for coordinates?
+      expect(coords).toHaveLength(2)
+    })
 
   })
   describe("runGreenChecks", () => {
