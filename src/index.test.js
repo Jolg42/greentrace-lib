@@ -44,6 +44,7 @@ describe("GreenTrace", () => {
     })
     test.todo("has usable IP addresses")
     test.todo("has usable coords addresses")
+    test.todo("has green / grey classification for each hop")
   })
 })
 
