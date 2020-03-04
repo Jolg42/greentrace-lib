@@ -60,11 +60,12 @@ describe("GreenTrace", () => {
       // TODO what are the max and min values for coordinates?
       expect(coords).toHaveLength(2)
     })
+    test("has coords in the correct latitude / longitude order", () => {
+      // the current output mixes the latitude and longitude up
 
-  })
-  describe("runGreenChecks", () => {
-    test.todo("returns green / grey classification for each hop")
+    })
+    describe("runGreenChecks", () => {
+      test.todo("returns green / grey classification for each hop")
+    })
   })
 })
-
-

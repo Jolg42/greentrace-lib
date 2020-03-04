@@ -68,4 +68,4 @@ const GreenTrace = {
   }
 }
 
-export default GreenTrace
+module.exports = GreenTrace
