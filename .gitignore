@@ -43,4 +43,6 @@ yarn.lock
 others
 .DS_Store
 
+.vscode
+
 package-lock.json
