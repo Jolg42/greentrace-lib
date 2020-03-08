@@ -67,5 +67,13 @@ describe("GreenTrace", () => {
     describe("runGreenChecks", () => {
       test.todo("returns green / grey classification for each hop")
     })
+    describe.only("toArcLayer", () => {
+      test.only("it creates the initial origin format", () => {
+        const res = GreenTrace.toArcLayer(hops)
+        // we have one less hop, as the arcs show the connecting lines,
+        // not the points
+        expect(res.length).toEqual(hops.length - 1)
+      })
+    })
   })
 })

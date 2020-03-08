@@ -18,12 +18,15 @@ const GreenTrace = {
     debug(hops)
     return this.convertTraceHops(hops)
   },
+  getIp(obj) {
+    return Object.keys(obj)[0];
+  },
 
   convertTraceHops(hops) {
     const hopIpv4s = hops
       .map(v => {
-        debug("v", v, Object.keys(v)[0])
-        return Object.keys(v)[0]
+        debug("convertTraceHops:v", v, this.getIp(v))
+        return this.getIp(v)
       })
       .filter(hop => {
         if (hop) {
@@ -44,11 +47,23 @@ const GreenTrace = {
 
   lookupUpIp(ip) {
     // accepts an IP, and returns an object with coordinates,
-    // and other info
-    debug("ip", ip)
-    let ipObj = {}
-    ipObj[ip] = geoip.lookup(ip)
-    return ipObj
+    // and other info. Returns False if no data found
+    debug("checking ip:", ip)
+    let res = geoip.lookup(ip)
+    if (!res) {
+      debug("empty result back for:", ip)
+      return false
+    }
+    if (!res.ll) {
+      debug("No latlngs in results for:", ip)
+      return false
+    } else {
+      let ipObj = {};
+      ipObj[ip] = res;
+      debug("ip result found", ipObj);
+      return ipObj;
+    }
+
   },
   toGeoJSON(tracedIps) {
     // convert a list of IP like objects, with coordinates to geoJSON
@@ -65,6 +80,33 @@ const GreenTrace = {
       },
       properties: tracedIps
     }
+  },
+  toArcLayer(traceIps) {
+    let arcs = [];
+    let index = 0;
+
+    for (const hop of traceIps) {
+
+      if (index > 0) {
+        const prevHop = traceIps[index - 1]
+
+        let arc = {
+
+          from: {
+            name: this.getIp(prevHop),
+            coordinates: prevHop[this.getIp(prevHop)].ll
+          },
+          to: {
+            name: this.getIp(hop),
+            coordinates: hop[this.getIp(hop)].ll
+          }
+        }
+        arcs.push(arc)
+      }
+
+      index++;
+    }
+    return arcs
   }
 }
 
